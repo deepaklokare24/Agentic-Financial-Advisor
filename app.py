@@ -12,7 +12,7 @@ if not os.getenv("OPENAI_API_KEY"):
     st.stop()
 
 # Set page config
-st.set_page_config(page_title="Financial Assistant", page_icon="💰", layout="wide")
+st.set_page_config(page_title="Agentic Financial Advisor", page_icon="💰", layout="wide")
 
 # Initialize session state for chat history if it doesn't exist
 if "messages" not in st.session_state:
