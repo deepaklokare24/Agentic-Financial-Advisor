@@ -1,7 +1,8 @@
+import sys
 from langchain_openai import ChatOpenAI
 from langchain.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -77,7 +78,7 @@ def vector_retriever(docs):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000,
                                                chunk_overlap=200)
     splits = text_splitter.split_documents(docs)
-    vectorstore = Chroma.from_documents(documents=splits,
+    vectorstore = FAISS.from_documents(documents=splits,
                                     embedding=OpenAIEmbeddings())
     return vectorstore.as_retriever()
 
